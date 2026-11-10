@@ -17,7 +17,7 @@ Bertanggung jawab dalam membuat, menyusun, dan memasukkan artikel ke website Lok
 **3. Zika – Pengelolaan Kategori**
 Bertanggung jawab dalam membuat dan mengelola kategori artikel melalui fitur Category agar konten website tersusun secara sistematis dan mudah ditemukan pengunjung.
 
-**4. Miska – **
+**4. Miska –**
 
 Hasil Pengembangan
 
