@@ -1,0 +1,28 @@
+/* LOKA V9 checkout-only additions, retaining the original V8 dark-and-gold visual identity. */
+.integrated-booking {
+  grid-column:1/-1;
+  display:grid;
+  gap:18px;
+  background:linear-gradient(125deg,rgba(232,176,85,.12),rgba(24,31,42,.97));
+  border:1px solid rgba(232,176,85,.30);
+  border-radius:22px;
+  padding:26px 30px;
+  margin-bottom:6px;
+  box-shadow:0 14px 35px rgba(0,0,0,.15);
+}
+.booking-step-header h3 {
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(1.4rem,2.8vw,2rem);
+  color:#f4eee5;
+  margin:8px 0;
+}
+.booking-step-header p{max-width:790px;color:#bfc5cf;line-height:1.7;margin:0}
+.booking-fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.booking-fields>div{min-width:0}
+.booking-fields label{display:block;font-weight:700;color:#e4d9c8;margin-bottom:8px}
+.booking-fields input{width:100%;min-height:48px;padding:11px 13px;color:#f5f0e9;background:#1c2430;border:1px solid rgba(232,176,85,.24);border-radius:12px;color-scheme:dark}
+.booking-fields input:focus-visible{outline:2px solid #e8b055;outline-offset:2px}
+.booking-info{color:#c9c5bf;font-size:.87rem;line-height:1.65;margin:0;padding:12px 14px;background:rgba(232,176,85,.07);border:1px solid rgba(232,176,85,.16);border-radius:12px}
+.booking-info strong{color:#edc482}
+.order-booking-summary{color:#edc482;font-weight:700;font-size:.82rem;line-height:1.65;padding-top:8px}
+@media(max-width:720px){.integrated-booking{padding:19px 16px}.booking-fields{grid-template-columns:1fr;gap:13px}}

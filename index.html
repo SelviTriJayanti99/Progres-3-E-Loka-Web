@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0d1117">
+<title>Loka Boardgame Cafe</title>
+<meta id="site-description" name="description" content="">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="style.css?v=9.3">
+<link rel="stylesheet" href="loka-v9-checkout-dark.css?v=9.3">
+</head>
+<body>
+<header>
+  <div class="logo">
+    <span class="logo-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><circle cx="8.5" cy="8.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="8.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="8.5" cy="15.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.1" fill="currentColor" stroke="none"/></svg>
+    </span>
+    <span class="logo-text"><b id="site-brand">Loka</b><small id="site-tagline">Boardgame Cafe</small></span>
+  </div>
+  <nav id="nav"></nav>
+</header>
+<main>
+  <p class="boot-err" id="boot-err" role="alert" hidden></p>
+  <section id="v-home">
+    <div class="hero" id="loka-hero">
+      <span class="float f1" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><circle cx="9" cy="9" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="15" r="1" fill="currentColor" stroke="none"/></svg></span>
+      <span class="float f2" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></span>
+      <span class="float f3" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><circle cx="8.5" cy="8.5" r="1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="8.5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="8.5" cy="15.5" r="1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1" fill="currentColor" stroke="none"/></svg></span>
+      <span class="float f4" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+
+      <div class="hero-body">
+        <span class="badge">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg>
+          <span id="home-badge">Boardgame Cafe #1 di Kota</span>
+        </span>
+        <h1 id="home-title">Makan, Minum &amp; <span>Main Bersama</span></h1>
+        <p id="home-desc">Loka Boardgame Cafe: booking meja, pilih game, dan pesan menu dari satu akun.</p>
+        
+        <div class="acts"><button id="h-reg">Buat akun</button><button class="ghost" id="h-log">Masuk</button><button id="h-dash" hidden>Ke dashboard</button><button class="ghost" id="h-cat">Lihat katalog</button></div>
+      </div>
+    </div>
+
+    <section class="catalog" id="catalog" aria-labelledby="cat-title">
+      <div class="cat-head">
+        <span class="eyebrow">Katalog</span>
+        <h2 id="cat-title">Pilih game &amp; menu favoritmu</h2>
+        <p>Lihat koleksi boardgame dan menu kami sebelum datang. Cari yang cocok untuk jumlah pemainmu, lalu booking meja.</p>
+      </div>
+
+      <div class="seg" role="tablist" aria-label="Jenis katalog">
+        <button type="button" role="tab" data-c="games" aria-selected="true">Boardgame <span class="count" id="cc-games"></span></button>
+        <button type="button" role="tab" data-c="menu" aria-selected="false">Menu <span class="count" id="cc-menu"></span></button>
+      </div>
+
+      <p class="cat-err" id="c-err" role="alert" hidden><span id="c-err-t"></span> <button type="button" class="ghost sm" id="c-retry">Coba lagi</button></p>
+
+      <div id="cp-games" role="tabpanel">
+        <div class="toolbar">
+          <div class="search"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input id="g-q" type="search" placeholder="Cari judul atau genre" aria-label="Cari boardgame" autocomplete="off"></div>
+          <select id="g-ppl" aria-label="Jumlah pemain">
+            <option value="">Semua pemain</option>
+            <option value="1">1 pemain</option><option value="2">2 pemain</option><option value="3">3 pemain</option>
+            <option value="4">4 pemain</option><option value="5">5 pemain</option><option value="6">6 pemain</option>
+            <option value="8">8 pemain</option>
+          </select>
+          <select id="g-sort" aria-label="Urutkan">
+            <option value="title">Nama A-Z</option>
+            <option value="duration">Durasi tercepat</option>
+            <option value="diff">Paling mudah</option>
+            <option value="players">Pemain terbanyak</option>
+          </select>
+        </div>
+        <div class="chips" id="g-chips" role="group" aria-label="Filter genre"></div>
+        <p class="count-line" id="g-count" role="status"></p>
+        <div class="cgrid" id="g-grid"></div>
+        <p class="empty cat-empty" id="g-empty" hidden><span id="g-empty-t"></span> <button type="button" class="ghost sm" id="g-reset">Reset filter</button></p>
+      </div>
+
+      <div id="cp-menu" role="tabpanel" hidden>
+        <div class="pgrid" id="m-grid"></div>
+        <p class="empty cat-empty" id="m-empty" hidden>Belum ada menu yang tersedia.</p>
+      </div>
+
+      <div class="cta-band">
+        <div>
+          <h3>Sudah ketemu game-nya?</h3>
+          <p>Booking meja, pilih game dan menu sekaligus—semua cukup dalam satu checkout.</p>
+        </div>
+        <button type="button" id="c-cta">Booking + game + menu</button>
+      </div>
+    </section>
+    <section class="cms-public" id="home-articles" aria-labelledby="home-articles-title" hidden>
+      <span class="eyebrow">Cerita &amp; informasi</span>
+      <h2 id="home-articles-title">Artikel Loka</h2>
+      <p class="cms-intro">Tips boardgame, informasi menu, dan kabar terbaru dari Loka.</p>
+      <div class="cms-filters">
+        <input id="article-search" type="search" placeholder="Cari artikel..." aria-label="Cari artikel">
+        <select id="article-category" aria-label="Filter kategori artikel"><option value="">Semua kategori</option></select>
+      </div>
+      <p class="cms-count" id="article-count" aria-live="polite"></p>
+      <div class="cms-list"></div>
+      <p id="article-empty" class="empty" hidden>Tidak ada artikel yang sesuai pencarian.</p>
+    </section>
+    <section class="cms-public" id="home-pages" aria-labelledby="home-pages-title" hidden>
+      <span class="eyebrow">Kenali kami</span>
+      <h2 id="home-pages-title">Informasi &amp; Halaman</h2>
+      <div class="cms-list"></div>
+    </section>
+    <section class="cms-public" id="home-networkings" aria-labelledby="home-networkings-title" hidden>
+      <span class="eyebrow">Teman Loka</span>
+      <h2 id="home-networkings-title">Jejaring &amp; Mitra</h2>
+      <div class="cms-list"></div>
+    </section>
+  </section>
+
+  <section id="v-info" class="loka-reading-view" hidden>
+    <button type="button" class="ghost reading-back" id="info-back">← Kembali ke beranda</button>
+    <div class="reading-layout">
+      <aside class="reading-sidebar"><span class="reading-kicker">KENALI LOKA</span><h2>Tentang &amp; Informasi</h2>
+        <p>Kenali Loka Boardgame Cafe dan cara menikmati layanan kami.</p>
+        <div class="reading-links"><button type="button" id="info-about-btn">Tentang Loka</button><button type="button" id="info-guide-btn">Informasi &amp; Panduan</button></div>
+      </aside>
+      <article class="reading-paper" id="info-content" aria-live="polite"></article>
+    </div>
+  </section>
+  <section id="v-article" class="loka-reading-view" hidden>
+    <button type="button" class="ghost reading-back" id="article-back">← Kembali ke artikel</button>
+    <article class="reading-paper reading-article" id="article-content" aria-live="polite"></article>
+  </section>
+
+  <section id="v-register" class="auth card" hidden>
+    <h2>Buat akun</h2>
+    <form id="f-reg" novalidate>
+      <label for="r-name">Nama lengkap</label><input id="r-name" autocomplete="name">
+      <label for="r-email">Email</label><input id="r-email" type="email" autocomplete="email">
+      <label for="r-phone">No. WhatsApp</label><input id="r-phone" type="tel" autocomplete="tel">
+      <label for="r-pass">Kata sandi (min. 6 karakter)</label><input id="r-pass" type="password" autocomplete="new-password">
+      <label for="r-pass2">Ulangi kata sandi</label><input id="r-pass2" type="password" autocomplete="new-password">
+      <p class="msg" id="r-msg" role="alert"></p>
+      <button type="submit">Daftar</button>
+    </form>
+    <p class="sw">Sudah punya akun? <a id="to-login" tabindex="0">Masuk</a></p>
+  </section>
+
+  <section id="v-login" class="auth card" hidden>
+    <h2>Masuk</h2>
+    <form id="f-log" novalidate>
+      <label for="l-email">Email</label><input id="l-email" type="email" autocomplete="email">
+      <label for="l-pass">Kata sandi</label><input id="l-pass" type="password" autocomplete="current-password">
+      <p class="msg" id="l-msg" role="alert"></p>
+      <button type="submit">Masuk</button>
+    </form>
+    <p class="sw">Belum punya akun? <a id="to-reg" tabindex="0">Daftar</a></p>
+  </section>
+
+  <section id="v-dash" hidden>
+    <h2 id="d-hi"></h2>
+    <p class="lead">Kelola pesanan, booking, dan profil kamu.</p>
+    <div class="grid">
+      <div class="card stat"><b id="s-ord">0</b>Pesanan</div>
+      <div class="card stat"><b id="s-book">0</b>Booking meja</div>
+      <div class="card stat"><b id="s-since">-</b>Anggota sejak</div>
+    </div>
+    <div class="tabs" role="tablist">
+      <button role="tab" data-t="order" aria-selected="true">Booking + Game + Menu</button>
+      <button role="tab" data-t="hist" aria-selected="false">Riwayat</button>
+      <button role="tab" data-t="prof" aria-selected="false">Profil</button>
+    </div>
+
+    <div id="t-order" class="shop">
+      <section class="integrated-booking" aria-label="Langkah 1 booking meja">
+        <div class="booking-step-header"><span class="reading-kicker">LANGKAH 1 · BOOKING MEJA</span><h3>Atur waktu berkumpulmu</h3><p>Pilih tanggal, jam kedatangan, dan jumlah tamu. Setelah memilih game dan menu, cukup klik satu tombol untuk mengirim semuanya.</p></div>
+        <div class="booking-fields"><div><label for="b-date">Tanggal kunjungan</label><input id="b-date" type="date" required></div><div><label for="b-time">Jam kedatangan</label><input id="b-time" type="time" value="16:00" required></div><div><label for="b-ppl">Jumlah tamu</label><input id="b-ppl" type="number" min="1" max="12" value="4" required></div></div>
+        <p class="booking-info">Booking berstatus <strong>menunggu konfirmasi</strong> sampai disetujui staf Loka. Pilihan boardgame dan menu disatukan pada booking ini.</p>
+      </section>
+      <div class="game-order-step" id="game-order-step">
+        <div><span class="reading-kicker">LANGKAH 2 · BOARDGAME</span><h3>Pilih game untuk menemani pesananmu</h3><p>Pilih boardgame yang tersedia, lalu tambahkan makanan dan minuman favorit. Semua pilihan akan disimpan bersama booking mejamu dalam satu transaksi.</p></div>
+        <div class="game-order-picker"><label for="order-game">Boardgame pilihan</label><select id="order-game"><option value="">Tanpa boardgame</option></select><span id="order-game-hint" class="field-help">Pilihan game tidak dikenai biaya pada pesanan menu ini. Tanyakan ketentuan bermain/sewa kepada staf Loka.</span></div>
+      </div>
+      <div class="shop-main">
+        <div class="checkout-benefits" aria-label="Keunggulan pemesanan"><span>✓ Satu booking &amp; pesanan</span><span>✓ Pilih boardgame favorit</span><span>✓ Ringkasan jelas</span></div>
+        <p class="shop-step-title"><span class="reading-kicker">LANGKAH 3 · MENU</span><strong>Tambahkan makanan &amp; minuman</strong></p><div class="search shop-search"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input id="s-q" type="search" placeholder="Cari menu, misalnya bakso" aria-label="Cari menu" autocomplete="off"></div>
+        <div class="chips" id="s-chips" role="group" aria-label="Kategori menu"></div>
+        <div class="pgrid" id="s-grid"></div>
+        <p class="empty cat-empty" id="s-empty" hidden>Menu tidak ditemukan. Coba kata kunci lain.</p>
+      </div>
+      <aside class="cart" id="cart" aria-label="Keranjang pesanan">
+        <div class="cart-head"><div><span class="cart-eyebrow">LANGKAH 4 · CHECKOUT</span><h3>Ringkasan pesanan</h3></div><button type="button" class="ghost sm cart-x" id="cart-x">Tutup</button></div>
+        <ul class="cart-list" id="cart-list"></ul>
+        <p class="empty" id="cart-empty">Keranjang masih kosong. Pilih menu, lalu tekan Tambah.</p>
+        <div class="cart-foot" id="cart-foot" hidden>
+          <p class="order-booking-summary" id="order-booking-summary">Isi jadwal booking di langkah pertama.</p><p class="order-game-summary" id="order-game-summary">Game: belum dipilih</p><div class="cart-total"><span>Total menu</span><b id="cart-total">Rp0</b></div>
+          <p class="msg" id="o-msg" role="status"></p>
+          <button type="button" id="o-btn"><span>Booking &amp; pesan sekarang</span><span aria-hidden="true">→</span></button><p class="checkout-note">Booking dan pesanan menu dikirim bersamaan. Keduanya dapat dipantau di Riwayat.</p>
+        </div>
+      </aside>
+      <div class="cart-bd" id="cart-bd" hidden></div>
+      <button type="button" class="cart-bar" id="cart-bar" hidden><span><b id="cb-n">0</b> item</span><span>Lihat pesanan &middot; <b id="cb-t">Rp0</b></span></button>
+    </div>
+
+    <div id="t-hist" class="card" hidden>
+      <h3>Riwayat</h3>
+      <div class="tw"><table><thead><tr><th>Jenis</th><th>Detail</th><th>Total / Info</th><th>Status</th><th>Waktu</th><th></th></tr></thead><tbody id="h-body"></tbody></table></div>
+      <p class="empty" id="h-empty">Belum ada riwayat. Mulai dengan pesan menu atau booking meja.</p>
+    </div>
+
+    <div id="t-prof" class="card" hidden>
+      <h3>Profil</h3>
+      <label for="p-name">Nama lengkap</label><input id="p-name">
+      <label for="p-email">Email</label><input id="p-email" disabled>
+      <label for="p-phone">No. WhatsApp</label><input id="p-phone" type="tel">
+      <p class="msg" id="p-msg" role="status"></p>
+      <button id="p-btn">Simpan perubahan</button>
+    </div>
+  </section>
+
+  <section id="v-admin" hidden>
+    <h2>Dashboard admin</h2>
+    <p class="lead" id="a-hi"></p>
+    <div class="grid">
+      <div class="card stat"><b id="st-users">0</b>Pelanggan</div>
+      <div class="card stat"><b id="st-orders">0</b>Total pesanan</div>
+      <div class="card stat"><b id="st-books">0</b>Total booking</div>
+      <div class="card stat"><b id="st-rev">Rp0</b>Pendapatan (pesanan selesai)</div>
+      <div class="card stat"><b id="st-new">0</b>Pesanan baru</div>
+      <div class="card stat"><b id="st-pend">0</b>Booking menunggu</div>
+      <div class="card stat"><b id="st-login">0</b>Login hari ini</div>
+    </div>
+    <div class="tabs" role="tablist">
+      <button role="tab" data-a="orders" aria-selected="true">Pesanan</button>
+      <button role="tab" data-a="books" aria-selected="false">Booking</button>
+      <button role="tab" data-a="menu" aria-selected="false">Menu</button>
+      <button role="tab" data-a="games" aria-selected="false">Boardgame</button>
+      <button role="tab" data-a="users" aria-selected="false">Pengguna</button>
+      <button role="tab" data-a="logins" aria-selected="false">Riwayat login</button>
+      <button role="tab" data-a="articles" aria-controls="ap-articles" aria-selected="false">Article</button>
+      <button role="tab" data-a="categories" aria-controls="ap-categories" aria-selected="false">Category</button>
+      <button role="tab" data-a="pages" aria-controls="ap-pages" aria-selected="false">Pages</button>
+      <button role="tab" data-a="hero_sections" aria-controls="ap-hero_sections" aria-selected="false">Hero Section</button>
+      <button role="tab" data-a="web_settings" aria-controls="ap-web_settings" aria-selected="false">Web Settings</button>
+      <button role="tab" data-a="networkings" aria-controls="ap-networkings" aria-selected="false">Networkings</button>
+    </div>
+
+    <div id="ap-orders" class="card">
+      <div class="loka-section-head"><div><span class="eyebrow">OPERASIONAL KAFE</span><h3>Pesanan pelanggan</h3><p class="admin-description">Pantau pesanan, game pilihan, nilai transaksi, dan status dalam satu tampilan.</p></div><span class="admin-head-mark">LOKA • ORDER DESK</span></div>
+      <div class="tw"><table class="admin-orders-table"><thead><tr><th>ID</th><th>Pelanggan</th><th>Menu dipesan</th><th>Boardgame pilihan</th><th>Booking meja</th><th>Total</th><th>Status</th><th>Waktu</th></tr></thead><tbody id="ao-body"></tbody></table></div>
+    </div>
+
+    <div id="ap-books" class="card" hidden>
+      <h3>Booking meja</h3>
+      <div class="tw"><table><thead><tr><th>ID</th><th>Pelanggan</th><th>Jadwal</th><th>Orang</th><th>Pesanan terkait</th><th>Status</th></tr></thead><tbody id="ab-body"></tbody></table></div>
+    </div>
+
+    <div id="ap-menu" class="card" hidden>
+      <h3>Kelola menu</h3>
+      <label for="m-name">Nama menu</label><input id="m-name" maxlength="100">
+      <label for="m-price">Harga (Rp)</label><input id="m-price" type="number" min="1">
+      <label for="m-cat">Kategori</label><select id="m-cat"><option>Makanan</option><option>Minuman</option><option>Cemilan</option></select>
+      <label for="m-desc">Deskripsi singkat (maks. 200 karakter)</label><input id="m-desc" maxlength="200">
+      <label for="m-img">Foto (opsional)</label><input id="m-img" maxlength="255" placeholder="img/bakso.jpg atau https://...">
+      <label class="check" for="m-active"><input id="m-active" type="checkbox" checked> Tampilkan di menu pelanggan</label>
+      <div class="acts2 row"><button id="m-btn">Tambah menu</button><button class="ghost" id="m-cancel" hidden>Batal</button></div>
+      <div class="tw"><table><thead><tr><th>Nama</th><th>Kategori</th><th>Harga</th><th>Status</th><th></th></tr></thead><tbody id="am-body"></tbody></table></div>
+    </div>
+
+    <div id="ap-games" class="card" hidden>
+      <h3>Kelola boardgame</h3>
+      <label for="gm-title">Judul game</label><input id="gm-title" maxlength="100">
+      <label for="gm-genre">Genre</label><input id="gm-genre" maxlength="30" list="gm-genres" placeholder="Strategi, Keluarga, Party, Kooperatif, Abstrak">
+      <datalist id="gm-genres"></datalist>
+      <div class="two">
+        <div><label for="gm-min">Pemain minimal</label><input id="gm-min" type="number" min="1" max="20" value="2"></div>
+        <div><label for="gm-max">Pemain maksimal</label><input id="gm-max" type="number" min="1" max="20" value="4"></div>
+        <div><label for="gm-dur">Durasi (menit)</label><input id="gm-dur" type="number" min="5" max="480" value="30"></div>
+        <div><label for="gm-diff">Kesulitan</label><select id="gm-diff"><option value="mudah">Mudah</option><option value="sedang">Sedang</option><option value="sulit">Sulit</option></select></div>
+      </div>
+      <label for="gm-desc">Deskripsi singkat (maks. 300 karakter)</label><textarea id="gm-desc" maxlength="300" rows="3"></textarea>
+      <label for="gm-img">Foto game (path gambar atau URL)</label>
+      <input id="gm-img" maxlength="255" placeholder="img/catan game.jpg" aria-describedby="gm-img-help">
+      <p class="field-help" id="gm-img-help">Simpan foto di folder img/, lalu isi nama file sesuai huruf dan ekstensi. Contoh: img/catan game.jpg</p>
+      <label class="check" for="gm-avail"><input id="gm-avail" type="checkbox" checked> Tersedia (tidak sedang dipakai)</label>
+      <label class="check" for="gm-active"><input id="gm-active" type="checkbox" checked> Tampilkan di katalog</label>
+      <div class="acts2 row"><button id="gm-btn">Tambah game</button><button class="ghost" id="gm-cancel" hidden>Batal</button></div>
+      <div class="tw"><table><thead><tr><th>Judul</th><th>Genre</th><th>Pemain</th><th>Durasi</th><th>Kesulitan</th><th>Status</th><th></th></tr></thead><tbody id="ag-body"></tbody></table></div>
+    </div>
+
+    <div id="ap-users" class="card" hidden>
+      <h3>Pengguna</h3>
+      <div class="tw"><table><thead><tr><th>Nama</th><th>Email</th><th>WhatsApp</th><th>Peran</th><th>Pesanan</th><th>Booking</th><th></th></tr></thead><tbody id="au-body"></tbody></table></div>
+    </div>
+
+    <div id="ap-articles" class="card" role="tabpanel" aria-label="Article" hidden></div>
+    <div id="ap-categories" class="card" role="tabpanel" aria-label="Category" hidden></div>
+    <div id="ap-pages" class="card" role="tabpanel" aria-label="Pages" hidden></div>
+    <div id="ap-hero_sections" class="card" role="tabpanel" aria-label="Hero Section" hidden></div>
+    <div id="ap-web_settings" class="card" role="tabpanel" aria-label="Web Settings" hidden></div>
+    <div id="ap-networkings" class="card" role="tabpanel" aria-label="Networkings" hidden></div>
+
+    <div id="ap-logins" class="card" hidden>
+      <h3>Riwayat login</h3>
+      <div class="tw"><table><thead><tr><th>Waktu</th><th>Nama</th><th>Email</th><th>Status</th><th>IP</th><th>Perangkat</th></tr></thead><tbody id="al-body"></tbody></table></div>
+    </div>
+  </section>
+</main>
+
+
+<!-- Footer Loka: terinspirasi tata letak multi-kolom, dengan identitas Loka sendiri. -->
+<footer class="loka-footer" id="footer-loka" aria-label="Informasi Loka Boardgame Cafe">
+  <div class="loka-footer-inner">
+    <div class="loka-footer-intro">
+      <div class="loka-footer-logo" aria-label="Loka Boardgame Cafe"><span class="loka-footer-dice" aria-hidden="true">⚄</span><span><strong id="footer-brand">Loka</strong><small>BOARDGAME CAFE</small></span></div>
+      <p>Tempat berkumpul, menikmati makanan dan minuman, serta menciptakan momen seru lewat boardgame.</p>
+      <a class="loka-footer-instagram" href="https://www.instagram.com/lokaboardgamecafe?dlrf=b3U1ZXlpZGo1Ymc0" target="_blank" rel="noopener noreferrer" aria-label="Kunjungi Instagram Loka Boardgame Cafe (membuka tab baru)">
+        <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.8" cy="6.3" r="1" fill="currentColor" stroke="none"/></svg>
+        <span>@lokaboardgamecafe</span><span aria-hidden="true">↗</span>
+      </a>
+    </div>
+    <div class="loka-footer-column">
+      <h2>Jelajahi Loka</h2>
+      <a href="#catalog" data-footer-section="catalog">Katalog boardgame &amp; menu</a>
+      <a href="#home-articles" data-footer-section="home-articles">Artikel &amp; berita</a>
+      <a href="#tentang-loka" data-footer-page="about">Tentang Loka</a>
+      <a href="#informasi-loka" data-footer-page="guide">Informasi &amp; panduan</a>
+      <a href="#home-networkings" data-footer-section="home-networkings">Jejaring &amp; mitra</a>
+    </div>
+    <div class="loka-footer-column">
+      <h2>Layanan</h2>
+      <a href="#catalog" data-footer-section="catalog">Cari permainan</a>
+      <a href="#catalog" data-footer-section="catalog">Lihat menu kafe</a>
+      <a href="#booking-loka" data-footer-action="booking">Booking meja</a>
+      <a href="#login-loka" data-footer-action="login">Masuk / buat akun</a>
+    </div>
+    <div class="loka-footer-column">
+      <h2>Ikuti &amp; Hubungi Kami</h2>
+      <a href="https://www.instagram.com/lokaboardgamecafe?dlrf=b3U1ZXlpZGo1Ymc0" target="_blank" rel="noopener noreferrer">Instagram resmi ↗</a>
+      <p>Ikuti Instagram kami untuk informasi kegiatan, konten boardgame, dan kabar terbaru.</p>
+      <div class="loka-footer-networks" id="footer-network-links" aria-label="Jejaring Loka lainnya"></div>
+    </div>
+  </div>
+  <div class="loka-footer-bottom">
+    <p>© <span id="footer-year">2026</span> Loka Boardgame Cafe. Hak cipta dilindungi.</p>
+    <a href="#top" data-footer-action="top">Kembali ke atas ↑</a>
+  </div>
+</footer>
+
+
+<div id="order-success" class="order-success-overlay" hidden>
+  <section class="order-success-dialog" role="dialog" aria-modal="true" aria-labelledby="order-success-title" aria-describedby="order-success-desc" tabindex="-1">
+    <div class="order-success-icon" aria-hidden="true">✓</div>
+    <span class="order-success-kicker">KONFIRMASI PESANAN</span>
+    <h2 id="order-success-title">Booking &amp; pesanan berhasil dikirim!</h2>
+    <p id="order-success-desc">Booking dan pesananmu telah diterima. Silakan menunggu konfirmasi meja dari tim Loka, lalu datang sesuai jadwal setelah dikonfirmasi.</p>
+    <div class="order-receipt" aria-label="Detail pesanan">
+      <div><span>Booking meja</span><strong id="success-booking">—</strong></div><div><span>Boardgame pilihan</span><strong id="success-game">Tanpa boardgame</strong></div>
+      <div><span>Jumlah menu</span><strong id="success-qty">0 item</strong></div>
+      <div class="receipt-total"><span>Total pesanan</span><strong id="success-total">Rp0</strong></div>
+    </div>
+    <p class="success-followup">Booking masih menunggu konfirmasi. Pantau status booking dan menu melalui Riwayat. Sampai jumpa di Loka!</p>
+    <div class="order-success-actions">
+      <button type="button" id="success-history">Lihat riwayat pesanan</button>
+      <button type="button" id="success-more" class="ghost">Kembali ke menu</button>
+    </div>
+  </section>
+</div>
+
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+<script src="script.js?v=9.3"></script>
+</body>
+</html>
